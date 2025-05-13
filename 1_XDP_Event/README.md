@@ -9,6 +9,7 @@ Our eBPF source code needs to be compiled into the machine instructions that the
 Our Makefile contains the rule for compiling an eBPF Object File using the Clang compiler. 
 To compile our program we can simply run make in our 'XDP Event' Directory.
 ```
+cd 1_XDP_Event
 make
 ```
 
