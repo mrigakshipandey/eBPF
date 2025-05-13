@@ -49,3 +49,5 @@ cd ../..
 ### Examples
 Continue to go through the Example eBPF Programs
 - [Simple Program attached to an XDP Event](https://github.com/mrigakshipandey/eBPF/blob/master/1_XDP_Event/README.md)
+- [Making Function calls in BPF Programs](https://github.com/mrigakshipandey/eBPF/blob/master/2_BPF_Func_Call/README.md)
+
