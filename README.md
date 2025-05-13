@@ -4,9 +4,11 @@ eBPF is a revolutionary kernel technology that allows developers to write custom
 This Repository Documents me learning eBPF.
 ### References
 |Resouce|Link|
-|---|---:|
+|---:|:---|
+| Casual Introduction: | [The Illustrated Children’s Guide to eBPF](https://ebpf.io/books/buzzing-across-space-illustrated-childrens-guide-to-ebpf.pdf) |
 | Book:   | [Learning-eBPF](https://cilium.isovalent.com/hubfs/Learning-eBPF%20-%20Full%20book.pdf)  |
 | Github: | [github.com/lizrice/learning-ebpf](https://github.com/lizrice/learning-ebpf)  | 
+| Docs: |[ebpf.io](https://ebpf.io/what-is-ebpf/) |
 
 ### Setup
 
