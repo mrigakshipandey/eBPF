@@ -41,6 +41,3 @@ sudo rm /sys/fs/bpf/hello
 sudo bpftool prog show name hello
 ```
 
-#### Navigation
-[<< Home](https://github.com/mrigakshipandey/eBPF/blob/master/README.md)
-[< Back](https://github.com/mrigakshipandey/eBPF/blob/master/1_XDP_Event/README.md)

@@ -113,6 +113,4 @@ There’s no inverse of bpftool prog load (at least not at the time of this writ
 sudo rm /sys/fs/bpf/<name>
 sudo bpftool prog show name <name>
 ```
-#### Navigation
-[<< Home](https://github.com/mrigakshipandey/eBPF/blob/master/README.md)
-[Next >](https://github.com/mrigakshipandey/eBPF/blob/master/2_BPF_Func_Call/README.md)
+
