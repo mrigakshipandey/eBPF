@@ -1,4 +1,4 @@
 **/**.o
 **/**.json
 **/.output
-**/vmlinux.h
+**/bootstrap

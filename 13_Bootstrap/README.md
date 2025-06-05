@@ -16,10 +16,10 @@ Building the example requires clang, libelf, and zlib.
 sudo apt install clang libelf1 libelf-dev zlib1g-dev
 ```
 
-### Compile
+### Compile and Run
 Run the following to commands
 ```
 cd 13_Bootstrap
-bpftool btf dump file /sys/kernel/btf/vmlinux format c > vmlinux.h
-make
+sudo make
+sudo ./bootstrap 
 ```

@@ -1,13 +1,5 @@
 // SPDX-License-Identifier: (LGPL-2.1 OR BSD-2-Clause)
 /* Copyright (c) 2020 Facebook */
-
-/*
-This user-level program is mainly used to 
-- load
-- verify
-- attach 
-- process data
-*/
 #include <argp.h>
 #include <signal.h>
 #include <stdio.h>
@@ -17,17 +9,11 @@ This user-level program is mainly used to
 #include "bootstrap.h"
 #include "bootstrap.skel.h"
 
-/* ********************************************************************************************
-Structure to store command line arguments
-******************************************************************************************** */
 static struct env {
     bool verbose;
     long min_duration_ms;
 } env;
 
-/* ********************************************************************************************
-Setup argp library to parse command line arguments
-******************************************************************************************** */
 const char *argp_program_version = "bootstrap 0.0";
 const char *argp_program_bug_address = "<bpf@vger.kernel.org>";
 const char argp_program_doc[] =
@@ -130,9 +116,7 @@ int main(int argc, char **argv)
     signal(SIGINT, sig_handler);
     signal(SIGTERM, sig_handler);
 
-/* ********************************************************************************************
-Open and verify skeleton
-******************************************************************************************** */
+    /* Load and verify BPF application */
     skel = bootstrap_bpf__open();
     if (!skel) {
         fprintf(stderr, "Failed to open and load BPF skeleton\n");
@@ -142,27 +126,21 @@ Open and verify skeleton
     /* Parameterize BPF code with minimum duration parameter */
     skel->rodata->min_duration_ns = env.min_duration_ms * 1000000ULL;
 
-/* ********************************************************************************************
-Load and verify skeleton
-******************************************************************************************** */
+    /* Load & verify BPF programs */
     err = bootstrap_bpf__load(skel);
     if (err) {
         fprintf(stderr, "Failed to load and verify BPF skeleton\n");
         goto cleanup;
     }
 
-/* ********************************************************************************************
-Attach Tracepoints
-******************************************************************************************** */
+    /* Attach tracepoints */
     err = bootstrap_bpf__attach(skel);
     if (err) {
         fprintf(stderr, "Failed to attach BPF skeleton\n");
         goto cleanup;
     }
 
-/* ********************************************************************************************
-Poll Ring Buffer for incoming data
-******************************************************************************************** */
+    /* Set up ring buffer polling */
     rb = ring_buffer__new(bpf_map__fd(skel->maps.rb), handle_event, NULL, NULL);
     if (!rb) {
         err = -1;
@@ -170,9 +148,7 @@ Poll Ring Buffer for incoming data
         goto cleanup;
     }
 
-/* ********************************************************************************************
-Format and Print Ring Buffer data
-******************************************************************************************** */
+    /* Process events */
     printf("%-8s %-5s %-16s %-7s %-7s %s\n",
         "TIME", "EVENT", "COMM", "PID", "PPID", "FILENAME/EXIT CODE");
     while (!exiting) {
