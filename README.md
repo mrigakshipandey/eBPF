@@ -23,7 +23,7 @@ lsb_release -a
 uname -r
 ```
 
-#### Step 1: Install Required Dependencies
+#### Install Required Dependencies
 To build eBPF programs and tools like bpftool, ensure the following packages are installed:
 ```
 sudo apt update
@@ -32,22 +32,12 @@ sudo apt install -y \
   libcap-dev libssl-dev libbfd-dev libncurses-dev \
   linux-headers-$(uname -r)
 ```
-#### Step 2: Build and Install libbpf
+#### Step 2: Update Submodules
 This installs libbpf to /usr/local/lib and headers to /usr/local/include
 ```
-cd libbpf/src
-make
-sudo make install
-cd ..
+git submodule update --recursive
 ```
-#### Step 3: Build and Install bpftool
-This installs bpftool to /usr/local/bin
-```
-cd bpftool/src
-make
-sudo make install
-cd ..
-```
+
 ### Examples
 **Simple Examples bpftool:**
 - [Simple Program attached to an XDP Event](https://github.com/mrigakshipandey/eBPF/blob/master/01_XDP_Event/README.md)
